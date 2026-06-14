@@ -10,6 +10,12 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  /* This maps 'font-sans' directly to your Next.js font variable */
+  --font-sans: var(--font-plus-jakarta), ui-sans-serif, system-ui, sans-serif;
+  
+  /* Optional: You can also map your brand colors here if you want */
+  --color-brand-green: #1AE100;
+  --color-brand-dark: #1E1E1E;
 }
 
 @media (prefers-color-scheme: dark) {
