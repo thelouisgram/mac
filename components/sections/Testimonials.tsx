@@ -16,9 +16,9 @@ export default function Testimonials() {
     <section className="bg-white text-brand-dark font-sans antialiased selection:bg-lime-200 py-12">
       <div className="mx-auto max-w-7xl px-6 md:px-12">
         {/* PORTFOLIO CONTAINER (DARK CARD) */}
-        <div className="bg-[#0A0B0D] rounded-4xl p-8 md:p-16 text-white overflow-hidden">
+        <div className="bg-[#0A0B0D] rounded-4xl py-8 md:py-16 text-white overflow-hidden">
           {/* Header */}
-          <div className="max-w-3xl mx-auto text-center mb-10 md:mb-14">
+          <div className="max-w-3xl mx-auto text-center mb-10 md:mb-14 px-8 md:px-16">
             <h2 className="text-3xl md:text-[44px] font-medium tracking-tight leading-[1.2]">
               Real-world examples of how we have helped companies achieve their
               marketing objectives.
@@ -26,7 +26,7 @@ export default function Testimonials() {
           </div>
 
           {/* Navigation Filter Tabs */}
-          <div className="flex flex-wrap justify-center items-center gap-3 mb-14 md:mb-20">
+          <div className="flex flex-wrap justify-center items-center gap-3 mb-14 md:mb-20 px-8 md:px-16">
             {tabs.map((tab) => {
               const isSelected = activeTab === tab.name;
               return (
@@ -46,40 +46,80 @@ export default function Testimonials() {
             })}
           </div>
 
-          {/* Case Studies Display Row */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-center">
-            {/* Project 1: Big Circular Interactive Card */}
-            <div className="bg-neutral-800/40 border border-neutral-800 aspect-square rounded-full flex items-center justify-center relative group overflow-hidden max-w-85 mx-auto w-full">
-              <div className="bg-[#9FF443] text-[#010205] text-xs font-semibold w-24 h-24 rounded-full flex items-center justify-center text-center p-2 shadow-lg cursor-pointer transform transition-transform group-hover:scale-105">
-                See Details
-              </div>
-            </div>
+          <div>
+            {/* Injecting utility to hide scrollbars globally/locally if plugin isn't active */}
+            <style
+              dangerouslySetInnerHTML={{
+                __html: `
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+  `,
+              }}
+            />
 
-            {/* Project 2: AI Wave Card */}
-            <div className="bg-[#B5B8B6] rounded-4xl p-8 aspect-square flex flex-col justify-between text-neutral-900 relative group overflow-hidden max-w-85 mx-auto w-full">
-              <div className="flex justify-between items-start">
-                <span className="text-xs font-medium opacity-60 tracking-wider">
-                  AI Corporation. 2023
-                </span>
+            {/* Case Studies Display Row (Scrollable X-Axis) */}
+            <div className="flex overflow-x-auto no-scrollbar gap-6 items-center snap-x snap-mandatory pb-4 pl-8 md:pl-16">
+              {/* Project 1: Big Circular Interactive Card */}
+              <div className="snap-center shrink-0 bg-neutral-800/40 border border-neutral-800 aspect-square rounded-full flex items-center justify-center relative group overflow-hidden w-full max-w-85">
+                <div className="bg-[#9FF443] text-[#010205] text-xs font-semibold w-24 h-24 rounded-full flex items-center justify-center text-center p-2 shadow-lg cursor-pointer transform transition-transform group-hover:scale-105">
+                  See Details
+                </div>
               </div>
-              <div>
-                <h4 className="text-xl md:text-2xl font-bold tracking-tight">
-                  AI Wave - AI Chatbot Mobile App
-                </h4>
-              </div>
-            </div>
 
-            {/* Project 3: App Lancer Card */}
-            <div className="bg-[#C2C5C3] rounded-4xl p-8 aspect-square flex flex-col justify-between text-neutral-900 relative group overflow-hidden max-w-85 mx-auto w-full">
-              <div className="flex justify-between items-start">
-                <span className="text-xs font-medium opacity-60 tracking-wider">
-                  LancerCorporation. 2023
-                </span>
+              {/* Project 2: AI Wave Card */}
+              <div className="snap-center shrink-0 bg-[#B5B8B6] rounded-4xl p-8 aspect-square flex flex-col justify-between text-neutral-900 relative group overflow-hidden w-full max-w-85">
+                <div className="flex justify-between items-start">
+                  <span className="text-xs font-medium opacity-60 tracking-wider">
+                    AI Corporation. 2023
+                  </span>
+                </div>
+                <div>
+                  <h4 className="text-xl md:text-2xl font-bold tracking-tight">
+                    AI Wave - AI Chatbot Mobile App
+                  </h4>
+                </div>
               </div>
-              <div>
-                <h4 className="text-xl md:text-2xl font-bold tracking-tight">
-                  App Lancer - Freelance Marketplace
-                </h4>
+
+              {/* Project 3: App Lancer Card */}
+              <div className="snap-center shrink-0 bg-[#C2C5C3] rounded-4xl p-8 aspect-square flex flex-col justify-between text-neutral-900 relative group overflow-hidden w-full max-w-85">
+                <div className="flex justify-between items-start">
+                  <span className="text-xs font-medium opacity-60 tracking-wider">
+                    LancerCorporation. 2023
+                  </span>
+                </div>
+                <div>
+                  <h4 className="text-xl md:text-2xl font-bold tracking-tight">
+                    App Lancer - Freelance Marketplace
+                  </h4>
+                </div>
+              </div>
+
+              {/* Project 4: New Card 1 */}
+              <div className="snap-center shrink-0 bg-[#A3A7A5] rounded-4xl p-8 aspect-square flex flex-col justify-between text-neutral-900 relative group overflow-hidden w-full max-w-85">
+                <div className="flex justify-between items-start">
+                  <span className="text-xs font-medium opacity-60 tracking-wider">
+                    Fintech Global. 2024
+                  </span>
+                </div>
+                <div>
+                  <h4 className="text-xl md:text-2xl font-bold tracking-tight">
+                    PaySphere - Digital Wallet Solution
+                  </h4>
+                </div>
+              </div>
+
+              {/* Project 5: New Card 2 */}
+              <div className="snap-center shrink-0 bg-[#929694] rounded-4xl p-8 aspect-square flex flex-col justify-between text-neutral-900 relative group overflow-hidden w-full max-w-85 mr-8 md:mr-16">
+                <div className="flex justify-between items-start">
+                  <span className="text-xs font-medium opacity-60 tracking-wider">
+                    CloudTech. 2024
+                  </span>
+                </div>
+                <div>
+                  <h4 className="text-xl md:text-2xl font-bold tracking-tight">
+                    SaaSify - Analytics Dashboard CRM
+                  </h4>
+                </div>
               </div>
             </div>
           </div>

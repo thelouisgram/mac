@@ -12,9 +12,9 @@ export default function HeroSection() {
       <main className="mx-auto max-w-7xl px-6 pt-12 md:px-12 grid grid-cols-1 lg:grid-cols-12 gap-6 sm:12 lg:gap-20 items-center">
         {/* Left Column (Copy & CTA) */}
         <div className="lg:col-span-6 flex flex-col justify-center">
-          <h1 className="text-4xl sm:text-5xl md:text-[68px] font-semibold tracking-tight leading-[1.1] text-brand-dark">
-            Stay ahead of the <br className="hidden md:inline" />
-            curve with our <br />
+          <h1 className="text-xl sm:text-[48px] xl:text-[68px] font-semibold tracking-tight leading-[1.1] text-brand-dark">
+            Stay ahead of the <br className="hidden lg:flex" />
+            curve with our <br className="hidden lg:flex" />
             forward-thinking
           </h1>
 
@@ -40,30 +40,30 @@ export default function HeroSection() {
           {/* Social Proof / Clients */}
           <div className="mt-16 md:mt-20 flex flex-col sm:flex-row gap-3 md:gap-10">
             <p className="text-xs font-semibold tracking-wider text-[#010205] leading-normal">
-              Trusted by the world's <br className="hidden md:inline" /> biggest
+              Trusted by the world's <br className="hidden xl:inline" /> biggest
               brands
             </p>
             <div className="flex flex-wrap items-center gap-x-8 gap-y-4 opacity-60">
               <Image
                 src="/assets/afterpay.svg"
                 alt="brand logo"
-                width={100}
-                height={30}
-                className="h-auto w-auto max-w-20 md:max-w-25"
+                width={108}
+                height={20}
+                className="max-w-20 md:max-w-25 h-auto"
               />
               <Image
                 src="/assets/basecamp.svg"
                 alt="brand logo"
-                width={100}
-                height={30}
-                className="h-auto w-auto max-w-20 md:max-w-25"
+                width={114}
+                height={25}
+                className="max-w-20 md:max-w-25 h-auto"
               />
               <Image
                 src="/assets/maze.svg"
                 alt="brand logo"
-                width={100}
-                height={30}
-                className="h-auto w-auto max-w-20 md:max-w-25"
+                width={99}
+                height={18}
+                className="max-w-20 md:max-w-25 h-auto"
               />
             </div>
           </div>
@@ -74,7 +74,7 @@ export default function HeroSection() {
           {/* TOP ROW: Cut Circle & Metrics Cards */}
           <div className="w-full flex gap-4 md:gap-6.5">
             {/* Card 1: Cut Circle Shape & Floating Badge */}
-            <div className="relative flex-1 min-w-30 h-50 sm:h-60 md:h-70.25 bg-[#FAFADA] rounded-3xl md:rounded-4xl overflow-visible">
+            <div className="relative flex-1 w-1/2 h-50 sm:h-60 md:h-70.25 bg-[#FAFADA] rounded-3xl md:rounded-4xl overflow-visible">
               {/* Main Semi-circle Graphic */}
               <div className="absolute bottom-0 left-0 w-full h-full flex items-end justify-start bg-white overflow-hidden rounded-xl">
                 <div className="absolute bottom-0 left-0 w-full h-full bg-[#D4D4D4] rounded-tl-full" />
@@ -87,9 +87,10 @@ export default function HeroSection() {
             </div>
 
             {/* Card 2: 230+ Metrics Card */}
-            <div className="w-40 sm:w-50 md:w-64.75 h-50 sm:h-60 md:h-70.25 bg-[#F0F0F0] rounded-3xl md:rounded-4xl p-5 md:p-8 flex flex-col justify-between tracking-tight shrink-0">
+            <div className="flex-1 w-1/2 h-50 sm:h-60 md:h-70.25 bg-[#F0F0F0] rounded-3xl md:rounded-4xl p-5 md:p-8 flex flex-col justify-between tracking-tight">
               <div className="flex flex-col">
-                <h3 className="text-3xl sm:text-4xl md:text-[84px] font-bold leading-none text-brand-dark">
+                {/* Reduced giant font size slightly on mobile so it doesn't break into two lines in a 50% split */}
+                <h3 className="text-4xl sm:text-5xl md:text-[60px] xl:text-[84px] font-bold leading-none text-brand-dark">
                   230+
                 </h3>
                 <p className="text-[11px] md:text-[16px] font-medium text-neutral-500 mt-3 md:mt-5 leading-[1.4] max-w-47.5">
@@ -105,25 +106,26 @@ export default function HeroSection() {
           </div>
 
           {/* BOTTOM ROW: Traffic & Product Sales Card */}
-          <div className="w-full h-full md:h-54 bg-[#0A0B0D] rounded-[18px] md:rounded-4xl pt-6 pl-4 pr-4 md:pt-9 md:pl-10 md:pr-0 flex justify-between items-start relative overflow-hidden">
+          <div className="w-full h-full xl:h-54 bg-[#0A0B0D] rounded-[18px] md:rounded-4xl pt-6 pl-4 pr-4 xl:pt-9 xl:pl-10 md:pr-0 flex justify-between items-start relative overflow-hidden">
             {/* Left Column: Tagline & Heading */}
             <div className="">
               {/* Tagline header */}
-              <div className="flex items-center gap-1.5 md:gap-3 mb-4 md:mb-8">
-                <div className="h-px w-6 md:w-9 bg-white rounded-full" />
-                <span className="text-[10px] md:text-[14px] font-semibold text-white tracking-wider whitespace-nowrap">
+              <div className="flex items-center gap-1.5 xl:gap-3 mb-4 xl:mb-8">
+                <div className="h-px w-6 xl:w-9 bg-white rounded-full" />
+                <span className="text-[14px] font-semibold text-white tracking-wider whitespace-nowrap">
                   Drive More Traffic and Sales
                 </span>
               </div>
 
               {/* Main heading */}
-              <h4 className="text-white text-[18px] md:text-[32px] font-semibold leading-[1.2] max-w-45 sm:max-w-none">
-                Drive more traffic <br /> and product sales
+              <h4 className="text-white text-[18px] md:text-[24px] xl:text-[32px] font-semibold leading-[1.2] max-w-45 sm:max-w-none">
+                Drive more traffic <br className="hidden sm:flex" /> and product
+                sales
               </h4>
             </div>
 
             {/* Right Column: Dynamic Green Bars */}
-            <div className="flex h-32 sm:h-48 md:h-full items-end gap-1 sm:gap-2 pr-2 sm:pr-3 md:pr-4 shrink-0 z-10">
+            <div className="flex h-32 sm:h-48 xl:h-full items-end gap-1 sm:gap-2 pr-2 sm:pr-3 md:pr-4 shrink-0 z-10">
               <div className="w-11 sm:w-15.25 bg-[#BAE289] h-[60%]" />
               <div className="w-11 sm:w-15.25 bg-[#99CF63] h-[80%]" />
               <div className="w-11 sm:w-15.25 bg-[#77B248] h-full" />
