@@ -18,10 +18,10 @@ const Navbar = () => {
 
         {/* Action Buttons */}
         <div className="flex items-center gap-4">
-          <button className="border border-black text-sm font-medium px-5 py-2.5 rounded-full hover:bg-black hover:text-white transition-all">
+          <button className="border border-[#010205] text-sm font-medium px-5 py-2.5 rounded-full hover:bg-[#010205] hover:text-white transition-all">
             Get started
           </button>
-          <button className="p-2.5 bg-black rounded-full transition-colors" aria-label="Notifications">
+          <button className="p-2.5 bg-[#010205] rounded-full transition-colors" aria-label="Notifications">
             <Bell className='text-white'/>
           </button>
         </div>
