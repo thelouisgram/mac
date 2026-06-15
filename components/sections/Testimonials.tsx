@@ -209,7 +209,7 @@ export default function Testimonials() {
 
             {/* Liquid Style Pagination Tracker Row - Hides dynamically on desktop viewports via 'md:hidden' */}
             <div className="flex md:hidden justify-center items-center gap-2 mt-6 select-none">
-              {[0, 1, 2, 3].map((index) => (
+              {[0, 1, 2, 3, 4].map((index) => (
                 <button
                   key={index}
                   onClick={() => scrollToCard(index)}

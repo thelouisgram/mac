@@ -26,7 +26,7 @@ export default function Services() {
         {/* FEATURED CARDS GRID */}
         <div className="grid grid-cols-1 lg:grid-cols-13 gap-6">
           {/* Left Card: 920+ Projects */}
-          <div className="lg:col-span-5 bg-[#0A0B0D] rounded-4xl p-8 md:p-10 flex flex-col justify-between min-h-85 md:h-100 relative overflow-hidden tracking-tight">
+          <div className="lg:col-span-5 bg-[#0A0B0D] overflow:hidden rounded-4xl p-8 md:p-10 flex flex-col justify-between min-h-85 md:h-100 relative overflow-hidden tracking-tight">
             <div>
               <h3 className="text-5xl md:text-[84px] font-bold text-white flex items-center gap-1 leading-none">
                 920 <span className="text-[#99CF63] font-bold">+</span>
@@ -101,7 +101,7 @@ export default function Services() {
 
             {/* Absolute Positioned Large Green Play Button Badge - Pushed further out via negative translates */}
             <div
-              className="absolute bottom-3.5 right-3.5 translate-x-3 translate-y-3 md:translate-x-5 md:translate-y-5 bg-[#9FF443] hover:bg-[#8ee034] transition-all duration-300 w-18 h-18 md:w-24 md:h-24 rounded-full 
+              className="absolute bottom-3 right- 3 md:bottom-3.5 md:right-3.5 translate-x-3 translate-y-3 md:translate-x-5 md:translate-y-5 bg-[#9FF443] hover:bg-[#8ee034] transition-all duration-300 w-18 h-18 md:w-24 md:h-24 rounded-full 
     flex items-center justify-center z-20 cursor-pointer border-6 border-white"
             >
               <Play className="w-6 h-6 md:w-8 md:h-8 text-[#010205] fill-[#010205] ml-1" />
