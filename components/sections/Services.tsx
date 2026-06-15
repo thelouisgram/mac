@@ -2,7 +2,7 @@ import { Plus, Play } from "lucide-react";
 
 export default function Services() {
   return (
-    <section className="bg-white text-brand-dark font-sans antialiased selection:bg-lime-200 py-16 md:py-24">
+    <section className="bg-white text-brand-dark font-sans antialiased selection:bg-lime-200 py-16 md:py-32">
       <div className="mx-auto max-w-7xl px-6 md:px-12">
         
         {/* SECTION HEADER */}

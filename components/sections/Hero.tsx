@@ -45,21 +45,21 @@ export default function HeroSection() {
             </p>
             <div className="flex flex-wrap items-center gap-x-8 gap-y-4 opacity-60">
               <Image
-                src="/assets/vector.svg"
+                src="/assets/afterpay.svg"
                 alt="brand logo"
                 width={100}
                 height={30}
                 className="h-auto w-auto max-w-20 md:max-w-25"
               />
               <Image
-                src="/assets/vector (1).svg"
+                src="/assets/basecamp.svg"
                 alt="brand logo"
                 width={100}
                 height={30}
                 className="h-auto w-auto max-w-20 md:max-w-25"
               />
               <Image
-                src="/assets/vector (2).svg"
+                src="/assets/maze.svg"
                 alt="brand logo"
                 width={100}
                 height={30}
