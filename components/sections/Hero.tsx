@@ -74,10 +74,20 @@ export default function HeroSection() {
           {/* TOP ROW: Cut Circle & Metrics Cards */}
           <div className="w-full flex gap-4 md:gap-6.5">
             {/* Card 1: Cut Circle Shape & Floating Badge */}
-            <div className="relative flex-1 w-1/2 h-50 sm:h-60 md:h-70.25 bg-[#FAFADA] rounded-3xl md:rounded-4xl overflow-visible">
-              {/* Main Semi-circle Graphic */}
-              <div className="absolute bottom-0 left-0 w-full h-full flex items-end justify-start bg-white overflow-hidden rounded-xl">
-                <div className="absolute bottom-0 left-0 w-full h-full bg-[#D4D4D4] rounded-tl-full" />
+            <div className="relative flex-1 w-1/2 h-50 sm:h-60 md:h-70.25 bg-none rounded-3xl md:rounded-xl overflow-visible">
+              {/* Main Semi-circle Graphic Container */}
+              <div className="absolute bottom-0 left-0 w-full h-full flex items-end justify-start overflow-hidden rounded-xl">
+                {/* The Semi-Circle Wrapper masking the image */}
+                <div className="absolute bottom-0 left-0 w-full h-full rounded-tl-full overflow-hidden bg-[#D4D4D4]">
+                  <Image
+                    src="/assets/laptop.jpg"
+                    alt="laptop"
+                    fill
+                    className="object-cover" // Fixed the typo here from "object cover"
+                    sizes="(max-width: 768px) 50vw, 33vw"
+                    priority
+                  />
+                </div>
               </div>
 
               {/* Floating Dark Green Arrow Badge with Shadow */}
@@ -106,13 +116,13 @@ export default function HeroSection() {
           </div>
 
           {/* BOTTOM ROW: Traffic & Product Sales Card */}
-          <div className="w-full h-full xl:h-54 bg-[#0A0B0D] rounded-[18px] md:rounded-4xl pt-6 pl-4 pr-4 xl:pt-9 xl:pl-10 md:pr-0 flex justify-between items-start relative overflow-hidden">
+          <div className="w-full h-full xl:h-54 bg-[#0A0B0D] rounded-[18px] md:rounded-4xl pt-6 pl-4 sm:pl-6 xl:pt-9 xl:pl-10 flex justify-between items-start relative overflow-hidden gap-1">
             {/* Left Column: Tagline & Heading */}
             <div className="">
               {/* Tagline header */}
               <div className="flex items-center gap-1.5 xl:gap-3 mb-4 xl:mb-8">
-                <div className="h-px w-6 xl:w-9 bg-white rounded-full" />
-                <span className="text-[14px] font-semibold text-white tracking-wider whitespace-nowrap">
+                <div className="h-px w-5 xl:w-9 bg-white rounded-full" />
+                <span className="text-[10px] xs:text-[12px] xl:text-[14px] font-semibold text-white tracking-wider whitespace-nowrap">
                   Drive More Traffic and Sales
                 </span>
               </div>
@@ -126,9 +136,9 @@ export default function HeroSection() {
 
             {/* Right Column: Dynamic Green Bars */}
             <div className="flex h-32 sm:h-48 xl:h-full items-end gap-1 sm:gap-2 pr-2 sm:pr-3 md:pr-4 shrink-0 z-10">
-              <div className="w-11 sm:w-15.25 bg-[#BAE289] h-[60%]" />
-              <div className="w-11 sm:w-15.25 bg-[#99CF63] h-[80%]" />
-              <div className="w-11 sm:w-15.25 bg-[#77B248] h-full" />
+              <div className="w-10 sm:w-15.25 bg-[#BAE289] h-[60%]" />
+              <div className="w-10 sm:w-15.25 bg-[#99CF63] h-[80%]" />
+              <div className="w-10 sm:w-15.25 bg-[#77B248] h-full" />
             </div>
 
             {/* Glossy Ambient Backlight Fluid Glow */}

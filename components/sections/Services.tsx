@@ -1,8 +1,9 @@
 import { Plus, Play } from "lucide-react";
+import Image from "next/image";
 
 export default function Services() {
   return (
-    <section className="bg-white text-brand-dark font-sans antialiased selection:bg-lime-200 py-16 md:py-32">
+    <section className="bg-white text-brand-dark font-sans antialiased selection:bg-lime-200 py-16 md:py-36">
       <div className="mx-auto max-w-7xl px-6 md:px-12">
         {/* SECTION HEADER */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-20 items-start mb-16 md:mb-20">
@@ -39,10 +40,32 @@ export default function Services() {
             <div className="flex items-center gap-3 z-10 mt-6">
               {/* Negative space creates the classic overlapping stack effect */}
               <div className="flex -space-x-4 overflow-hidden">
-                <div className="w-15 h-15 md:w-17.5 md:h-17.5 rounded-full ring-4 ring-[#0A0B0D] bg-neutral-600 relative z-40" />
-                <div className="w-15 h-15 md:w-17.5 md:h-17.5 rounded-full ring-4 ring-[#0A0B0D] bg-neutral-500 relative z-30" />
-                <div className="w-15 h-15 md:w-17.5 md:h-17.5 rounded-full ring-4 ring-[#0A0B0D] bg-neutral-400 relative z-20" />
-                <div className="w-15 h-15 md:w-17.5 md:h-17.5 rounded-full ring-4 ring-[#0A0B0D] bg-neutral-300 relative z-10" />
+                {[1, 2, 5, 6].map((num) => {
+                  // Dynamically calculate descending z-index: z-40, z-30, z-20, z-10
+                  const zIndexClass =
+                    num === 1
+                      ? "z-40"
+                      : num === 2
+                        ? "z-30"
+                        : num === 5
+                          ? "z-20"
+                          : "z-10";
+
+                  return (
+                    <div
+                      key={num}
+                      className={`w-15 h-15 md:w-17.5 md:h-17.5 rounded-full ring-4 ring-[#0A0B0D] relative ${zIndexClass} overflow-hidden bg-neutral-600`}
+                    >
+                      <Image
+                        src={`/assets/person/person${num}.jpg`}
+                        alt={`Team member ${num}`}
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 768px) 60px, 70px"
+                      />
+                    </div>
+                  );
+                })}
               </div>
 
               {/* Perfectly centered or baseline aligned plus indicator */}
@@ -56,19 +79,30 @@ export default function Services() {
           </div>
 
           {/* Right Card: How We Work Video/Interactive Container */}
-          <div className="lg:col-span-8 bg-[#C2C6C3] rounded-4xl p-8 md:p-12 flex items-center justify-center min-h-85 md:h-100 relative group border border-neutral-300">
-            {/* Subtle Texture/Gradient Background Overlay */}
-            <div className="absolute inset-0 bg-linear-to-tr from-[#010205]/10 via-transparent to-transparent opacity-40 mix-blend-multiply" />
+          <div className="lg:col-span-8 bg-[#C2C6C3] rounded-4xl p-8 md:p-12 flex items-center justify-center min-h-85 md:h-100 relative group border border-neutral-300 overflow-visible">
+            <div className="absolute inset-0 rounded-4xl overflow-hidden z-0">
+              {/* Background Image */}
+              <Image
+                src="/assets/peopleworking.jpg"
+                alt="work"
+                fill
+                className="object-cover transition-transform duration-500 group-hover:scale-105"
+                sizes="(max-width: 1024px) 100vw, 66vw"
+                priority
+              />
+              {/* Dark Overlay */}
+              <div className="absolute inset-0 bg-black/40 transition-opacity duration-300 group-hover:bg-black/50" />
+            </div>
 
             {/* Center Heading */}
-            <h3 className="text-white text-3xl sm:text-4xl md:text-[48px] font-semibold tracking-[0.15em] text-center z-10 uppercase select-none drop-shadow-sm">
+            <h3 className="text-white text-3xl sm:text-4xl md:text-[48px] font-semibold tracking-[0.15em] text-center z-10 uppercase select-none drop-shadow-md">
               How We Work
             </h3>
 
-            {/* Absolute Positioned Large Green Play Button Badge */}
+            {/* Absolute Positioned Large Green Play Button Badge - Pushed further out via negative translates */}
             <div
-              className="absolute -bottom-1 -right-1 md:-bottom-1 md:-right-3 bg-[#9FF443] hover:bg-[#8ee034] transition-all duration-300 w-18 h-18 md:w-24 md:h-24 rounded-full 
-            flex items-center justify-center z-20 cursor-pointer border-6 border-white"
+              className="absolute bottom-3.5 right-3.5 translate-x-3 translate-y-3 md:translate-x-5 md:translate-y-5 bg-[#9FF443] hover:bg-[#8ee034] transition-all duration-300 w-18 h-18 md:w-24 md:h-24 rounded-full 
+    flex items-center justify-center z-20 cursor-pointer border-6 border-white"
             >
               <Play className="w-6 h-6 md:w-8 md:h-8 text-[#010205] fill-[#010205] ml-1" />
             </div>

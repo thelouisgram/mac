@@ -1,9 +1,12 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { ArrowLeft, ArrowRight } from "lucide-react";
+import Image from "next/image";
 
 export default function Testimonials() {
   const [activeTab, setActiveTab] = useState("UI/UX Design");
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const [activeIndex, setActiveIndex] = useState(0);
 
   const tabs = [
     { name: "All Work", count: 20 },
@@ -12,14 +15,40 @@ export default function Testimonials() {
     { name: "Branding", count: 5 },
   ];
 
+  // Dynamically calculate slide positions on scroll interaction
+  const handleScroll = () => {
+    if (!scrollRef.current) return;
+
+    const container = scrollRef.current;
+    const scrollLeft = container.scrollLeft;
+
+    // 340px (max-w-85) + 24px (gap-6) = 364px per card step
+    const cardStep = 340 + 24;
+    const newIndex = Math.round(scrollLeft / cardStep);
+
+    setActiveIndex(Math.max(0, Math.min(4, newIndex)));
+  };
+
+  // Allow clicking on a liquid pagination dot to slide the carousel natively
+  const scrollToCard = (index: number) => {
+    if (!scrollRef.current) return;
+    const cardStep = 340 + 24;
+    scrollRef.current.scrollTo({
+      left: index * cardStep,
+      behavior: "smooth",
+    });
+    setActiveIndex(index);
+  };
+
   return (
     <section className="bg-white text-brand-dark font-sans antialiased selection:bg-lime-200 py-12">
       <div className="mx-auto max-w-7xl px-6 md:px-12">
+        
         {/* PORTFOLIO CONTAINER (DARK CARD) */}
         <div className="bg-[#0A0B0D] rounded-4xl py-8 md:py-16 text-white overflow-hidden">
           {/* Header */}
           <div className="max-w-3xl mx-auto text-center mb-10 md:mb-14 px-8 md:px-16">
-            <h2 className="text-3xl md:text-[44px] font-medium tracking-tight leading-[1.2]">
+            <h2 className="text-2xl md:text-[44px] font-medium tracking-tight leading-[1.2]">
               Real-world examples of how we have helped companies achieve their
               marketing objectives.
             </h2>
@@ -47,80 +76,151 @@ export default function Testimonials() {
           </div>
 
           <div>
-            {/* Injecting utility to hide scrollbars globally/locally if plugin isn't active */}
+            {/* Injecting browser CSS utility wrapper to completely strip scrollbars layout tracks */}
             <style
               dangerouslySetInnerHTML={{
                 __html: `
-    .no-scrollbar::-webkit-scrollbar { display: none; }
-    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-  `,
+                  .no-scrollbar::-webkit-scrollbar { display: none; }
+                  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+                `,
               }}
             />
 
             {/* Case Studies Display Row (Scrollable X-Axis) */}
-            <div className="flex overflow-x-auto no-scrollbar gap-6 items-center snap-x snap-mandatory pb-4 pl-8 md:pl-16">
-              {/* Project 1: Big Circular Interactive Card */}
-              <div className="snap-center shrink-0 bg-neutral-800/40 border border-neutral-800 aspect-square rounded-full flex items-center justify-center relative group overflow-hidden w-full max-w-85">
-                <div className="bg-[#9FF443] text-[#010205] text-xs font-semibold w-24 h-24 rounded-full flex items-center justify-center text-center p-2 shadow-lg cursor-pointer transform transition-transform group-hover:scale-105">
+            <div
+              ref={scrollRef}
+              onScroll={handleScroll}
+              className="flex overflow-x-auto no-scrollbar gap-6 items-center snap-x snap-mandatory pb-4 pl-8 pr-8 md:pl-16 md:pr-16"
+            >
+              {/* Project 1: Big Circular Interactive Card - Backed with testy9 */}
+              <div className="snap-center shrink-0 bg-neutral-800/40 border-8 border-neutral-600 aspect-square rounded-full flex items-center justify-center relative group overflow-hidden w-full max-w-85">
+                <div className="absolute inset-0 z-0">
+                  <Image
+                    src="/assets/testimonials/testy9.jpg"
+                    alt="Featured details project"
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    sizes="(max-width: 768px) 100vw, 340px"
+                    priority
+                  />
+                  <div className="absolute inset-0 bg-black/40 transition-opacity duration-300 group-hover:bg-black/50" />
+                </div>
+                <div className="bg-[#9FF443] text-[#010205] text-xs font-semibold w-24 h-24 rounded-full flex items-center justify-center text-center p-2 shadow-lg cursor-pointer transform transition-transform group-hover:scale-105 z-10 select-none">
                   See Details
                 </div>
               </div>
 
               {/* Project 2: AI Wave Card */}
-              <div className="snap-center shrink-0 bg-[#B5B8B6] rounded-4xl p-8 aspect-square flex flex-col justify-between text-neutral-900 relative group overflow-hidden w-full max-w-85">
-                <div className="flex justify-between items-start">
-                  <span className="text-xs font-medium opacity-60 tracking-wider">
+              <div className="snap-center shrink-0 bg-[#B5B8B6] border-8 border-neutral-600 rounded-4xl p-8 aspect-square flex flex-col justify-between text-white relative group overflow-hidden w-full max-w-85">
+                <div className="absolute inset-0 z-0">
+                  <Image
+                    src="/assets/testimonials/testy0.jpg"
+                    alt="AI Wave project"
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    sizes="(max-width: 768px) 100vw, 340px"
+                  />
+                  <div className="absolute inset-0 bg-black/50 transition-opacity duration-300 group-hover:bg-black/60" />
+                </div>
+                <div className="flex justify-between items-start z-10">
+                  <span className="text-xs font-medium opacity-80 tracking-wider">
                     AI Corporation. 2023
                   </span>
                 </div>
-                <div>
-                  <h4 className="text-xl md:text-2xl font-bold tracking-tight">
+                <div className="z-10">
+                  <h4 className="text-xl md:text-2xl font-bold tracking-tight drop-shadow-sm">
                     AI Wave - AI Chatbot Mobile App
                   </h4>
                 </div>
               </div>
 
               {/* Project 3: App Lancer Card */}
-              <div className="snap-center shrink-0 bg-[#C2C5C3] rounded-4xl p-8 aspect-square flex flex-col justify-between text-neutral-900 relative group overflow-hidden w-full max-w-85">
-                <div className="flex justify-between items-start">
-                  <span className="text-xs font-medium opacity-60 tracking-wider">
+              <div className="snap-center shrink-0 bg-[#C2C5C3] border-8 border-neutral-600 rounded-4xl p-8 aspect-square flex flex-col justify-between text-white relative group overflow-hidden w-full max-w-85">
+                <div className="absolute inset-0 z-0">
+                  <Image
+                    src="/assets/testimonials/testy7.jpg"
+                    alt="App Lancer project"
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    sizes="(max-width: 768px) 100vw, 340px"
+                  />
+                  <div className="absolute inset-0 bg-black/50 transition-opacity duration-300 group-hover:bg-black/60" />
+                </div>
+                <div className="flex justify-between items-start z-10">
+                  <span className="text-xs font-medium opacity-80 tracking-wider">
                     LancerCorporation. 2023
                   </span>
                 </div>
-                <div>
-                  <h4 className="text-xl md:text-2xl font-bold tracking-tight">
+                <div className="z-10">
+                  <h4 className="text-xl md:text-2xl font-bold tracking-tight drop-shadow-sm">
                     App Lancer - Freelance Marketplace
                   </h4>
                 </div>
               </div>
 
               {/* Project 4: New Card 1 */}
-              <div className="snap-center shrink-0 bg-[#A3A7A5] rounded-4xl p-8 aspect-square flex flex-col justify-between text-neutral-900 relative group overflow-hidden w-full max-w-85">
-                <div className="flex justify-between items-start">
-                  <span className="text-xs font-medium opacity-60 tracking-wider">
+              <div className="snap-center shrink-0 bg-[#A3A7A5] border-8 border-neutral-600 rounded-4xl p-8 aspect-square flex flex-col justify-between text-white relative group overflow-hidden w-full max-w-85">
+                <div className="absolute inset-0 z-0">
+                  <Image
+                    src="/assets/testimonials/testy3.jpg"
+                    alt="PaySphere project"
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    sizes="(max-width: 768px) 100vw, 340px"
+                  />
+                  <div className="absolute inset-0 bg-black/50 transition-opacity duration-300 group-hover:bg-black/60" />
+                </div>
+                <div className="flex justify-between items-start z-10">
+                  <span className="text-xs font-medium opacity-80 tracking-wider">
                     Fintech Global. 2024
                   </span>
                 </div>
-                <div>
-                  <h4 className="text-xl md:text-2xl font-bold tracking-tight">
+                <div className="z-10">
+                  <h4 className="text-xl md:text-2xl font-bold tracking-tight drop-shadow-sm">
                     PaySphere - Digital Wallet Solution
                   </h4>
                 </div>
               </div>
 
               {/* Project 5: New Card 2 */}
-              <div className="snap-center shrink-0 bg-[#929694] rounded-4xl p-8 aspect-square flex flex-col justify-between text-neutral-900 relative group overflow-hidden w-full max-w-85 mr-8 md:mr-16">
-                <div className="flex justify-between items-start">
-                  <span className="text-xs font-medium opacity-60 tracking-wider">
+              <div className="snap-center shrink-0 bg-[#929694] border-8 border-neutral-600 rounded-4xl p-8 aspect-square flex flex-col justify-between text-white relative group overflow-hidden w-full max-w-85 mr-8 md:mr-0">
+                <div className="absolute inset-0 z-0">
+                  <Image
+                    src="/assets/testimonials/testy4.jpg"
+                    alt="SaaSify project"
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    sizes="(max-width: 768px) 100vw, 340px"
+                  />
+                  <div className="absolute inset-0 bg-black/50 transition-opacity duration-300 group-hover:bg-black/60" />
+                </div>
+                <div className="flex justify-between items-start z-10">
+                  <span className="text-xs font-medium opacity-80 tracking-wider">
                     CloudTech. 2024
                   </span>
                 </div>
-                <div>
-                  <h4 className="text-xl md:text-2xl font-bold tracking-tight">
+                <div className="z-10">
+                  <h4 className="text-xl md:text-2xl font-bold tracking-tight drop-shadow-sm">
                     SaaSify - Analytics Dashboard CRM
                   </h4>
                 </div>
               </div>
+            </div>
+
+            {/* Liquid Style Pagination Tracker Row - Hides dynamically on desktop viewports via 'md:hidden' */}
+            <div className="flex md:hidden justify-center items-center gap-2 mt-6 select-none">
+              {[0, 1, 2, 3].map((index) => (
+                <button
+                  key={index}
+                  onClick={() => scrollToCard(index)}
+                  aria-label={`Show layout slide number ${index + 1}`}
+                  className={`h-2 transition-all duration-300 ease-out rounded-full ${
+                    activeIndex === index
+                      ? "w-7 bg-[#9FF443]" // Stretched configuration
+                      : "w-2 bg-neutral-700 hover:bg-neutral-500" // Resting bullet configuration
+                  }`}
+                />
+              ))}
             </div>
           </div>
         </div>
